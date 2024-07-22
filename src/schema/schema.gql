@@ -12,16 +12,27 @@ type RemoveCategoryResponse {
   message: String!
 }
 
+type Subcategory {
+  id: Int!
+  label: String!
+  slug: String!
+}
+
 type Query {
   sayHello: String!
   getAllCategory: [Category!]!
   getOneCategory(id: Int!): Category!
+  getAllSubcategory: [Subcategory!]!
+  getOneSubcategory(id: Int!): Subcategory!
 }
 
 type Mutation {
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
   deleteCategory(id: Int!): RemoveCategoryResponse!
+  createSubcategory(createSubcategoryInput: CreateSubcategoryInput!): Subcategory!
+  updateSubcategory(updateSubcategoryInput: UpdateSubcategoryInput!): Subcategory!
+  removeSubcategory(id: Int!): Subcategory!
 }
 
 input CreateCategoryInput {
@@ -29,6 +40,16 @@ input CreateCategoryInput {
 }
 
 input UpdateCategoryInput {
+  label: String
+  id: Int!
+  slug: String
+}
+
+input CreateSubcategoryInput {
+  label: String!
+}
+
+input UpdateSubcategoryInput {
   label: String
   id: Int!
   slug: String
