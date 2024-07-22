@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { FooResolver } from './graphql/base';
 import { CategoryModule } from './category/category.module';
 import { Category } from './category/entities/category.entity';
+import { SubcategoryModule } from './subcategory/subcategory.module';
+import { Subcategory } from './subcategory/entities/subcategory.entity';
 
 @Module({
   imports: [
@@ -25,12 +27,13 @@ import { Category } from './category/entities/category.entity';
         username: process.env.DATABASE_LOGIN,
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME,
-        entities: [Category],
+        entities: [Category, Subcategory],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
     CategoryModule,
+    SubcategoryModule,
   ],
   controllers: [],
   providers: [FooResolver],

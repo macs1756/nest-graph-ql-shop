@@ -53,7 +53,7 @@ export class CategoryService {
     const isDeleted = await this.categoryRepository.delete({ id });
 
     return isDeleted
-      ? { message: `Successfully deleted the post with id:${id}` }
+      ? { message: `Successfully deleted the category with id:${id}` }
       : { message: `Error on delete entity with id: ${id}` };
   }
 }
