@@ -5,16 +5,18 @@ import { Repository } from 'typeorm';
 import { Subcategory } from './entities/subcategory.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import slugify from 'slugify';
+import { CategoryService } from 'src/category/category.service';
 
 @Injectable()
 export class SubcategoryService {
   constructor(
     @InjectRepository(Subcategory)
     private subcategoryRepository: Repository<Subcategory>,
+    private readonly categoryService: CategoryService,
   ) {}
 
   async create(createSubcategoryInput: CreateSubcategoryInput) {
-    const { label } = createSubcategoryInput;
+    const { label, categoryId } = createSubcategoryInput;
 
     const slug = slugify(label, { lower: true });
 
@@ -23,7 +25,11 @@ export class SubcategoryService {
       slug,
     });
 
-    return await this.subcategoryRepository.save(newSubcategory);
+    await this.subcategoryRepository.save(newSubcategory);
+
+    const currentCategory = await this.categoryService.findOne(categoryId);
+
+    console.log(currentCategory);
   }
 
   async findAll() {

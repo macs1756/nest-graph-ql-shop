@@ -8,7 +8,7 @@ import { UpdateSubcategoryInput } from './dto/update-subcategory.input';
 export class SubcategoryResolver {
   constructor(private readonly subcategoryService: SubcategoryService) {}
 
-  @Mutation(() => Subcategory)
+  @Mutation(() => Subcategory, { name: 'createSubcategory' })
   createSubcategory(
     @Args('createSubcategoryInput')
     createSubcategoryInput: CreateSubcategoryInput,
