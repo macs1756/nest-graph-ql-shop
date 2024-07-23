@@ -1,9 +1,11 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Subcategory } from 'src/subcategory/entities/subcategory.entity';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -35,4 +37,8 @@ export class Category extends BaseEntity {
   @Column()
   @Field(() => String)
   slug: string;
+
+  @Field(() => [Subcategory])
+  @OneToMany(() => Subcategory, (subcategory) => subcategory.id)
+  subcategories: Subcategory[];
 }

@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'subcategories' })
+@Entity()
 @ObjectType()
 export class Subcategory {
   @PrimaryGeneratedColumn()
