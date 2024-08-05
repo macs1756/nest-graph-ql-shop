@@ -2,32 +2,35 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Subcategory {
+  id: Int!
+  label: String!
+  slug: String!
+  categoryId: Int!
+  category: Category!
+}
+
 type Category {
   id: Int!
   label: String!
   slug: String!
+  subcategories: [Subcategory!]!
 }
 
 type RemoveCategoryResponse {
   message: String!
 }
 
-type Subcategory {
-  id: Int!
-  label: String!
-  slug: String!
-}
-
 type Query {
   sayHello: String!
   getAllCategory: [Category!]!
-  getOneCategory(id: Int!): Category!
+  getOneCategory(slug: String!): Category!
   getAllSubcategory: [Subcategory!]!
   getOneSubcategory(id: Int!): Subcategory!
 }
 
 type Mutation {
-  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createCategory(args: CreateCategoryInput!): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
   deleteCategory(id: Int!): RemoveCategoryResponse!
   createSubcategory(args: CreateSubcategoryInput!): Subcategory!
