@@ -1,8 +1,11 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Category } from 'src/category/entities/category.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -34,4 +37,11 @@ export class Subcategory {
   @Column()
   @Field(() => String)
   slug: string;
+
+  @Column()
+  categoryId: number;
+
+  @ManyToOne(() => Category, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'categoryId' })
+  category: Category;
 }

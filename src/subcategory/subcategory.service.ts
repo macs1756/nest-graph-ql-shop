@@ -27,9 +27,9 @@ export class SubcategoryService {
 
     await this.subcategoryRepository.save(newSubcategory);
 
-    const currentCategory = await this.categoryService.findOne(categoryId);
+    //const currentCategory = await this.categoryService.findOne(categoryId);
 
-    console.log(currentCategory);
+    // console.log(currentCategory);
   }
 
   async findAll() {

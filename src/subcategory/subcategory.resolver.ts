@@ -10,7 +10,7 @@ export class SubcategoryResolver {
 
   @Mutation(() => Subcategory, { name: 'createSubcategory' })
   createSubcategory(
-    @Args('createSubcategoryInput')
+    @Args('args')
     createSubcategoryInput: CreateSubcategoryInput,
   ) {
     return this.subcategoryService.create(createSubcategoryInput);

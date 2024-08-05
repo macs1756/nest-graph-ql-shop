@@ -7,6 +7,7 @@ import { FooResolver } from './graphql/base';
 import { CategoryModule } from './category/category.module';
 import { Category } from './category/entities/category.entity';
 import { Subcategory } from './subcategory/entities/subcategory.entity';
+import { SubcategoryModule } from './subcategory/subcategory.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { Subcategory } from './subcategory/entities/subcategory.entity';
       inject: [ConfigService],
     }),
     CategoryModule,
+    SubcategoryModule,
   ],
   controllers: [],
   providers: [FooResolver],
