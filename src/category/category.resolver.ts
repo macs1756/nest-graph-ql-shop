@@ -10,9 +10,7 @@ export class CategoryResolver {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Mutation(() => Category, { name: 'createCategory' })
-  createCategory(
-    @Args('createCategoryInput') createCategoryInput: CreateCategoryInput,
-  ) {
+  createCategory(@Args('args') createCategoryInput: CreateCategoryInput) {
     return this.categoryService.create(createCategoryInput);
   }
 
@@ -22,8 +20,8 @@ export class CategoryResolver {
   }
 
   @Query(() => Category, { name: 'getOneCategory' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.categoryService.findOne(id);
+  findOne(@Args('slug', { type: () => String }) slug: string) {
+    return this.categoryService.findOne(slug);
   }
 
   @Mutation(() => Category, { name: 'updateCategory' })

@@ -27,11 +27,14 @@ export class CategoryService {
   }
 
   findAll() {
-    return this.categoryRepository.find();
+    return this.categoryRepository.find({ relations: ['subcategories'] });
   }
 
-  findOne(id: number) {
-    return this.categoryRepository.findOne({ where: { id } });
+  findOne(slug: string) {
+    return this.categoryRepository.findOne({
+      where: { slug },
+      relations: ['subcategories'],
+    });
   }
 
   async update(id: number, updateCategoryInput: UpdateCategoryInput) {
